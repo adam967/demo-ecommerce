@@ -1,23 +1,15 @@
-// Example of tracking "Add to Cart" events
-const buttons = document.querySelectorAll('.add-to-cart');
-
-buttons.forEach(button => {
-    button.addEventListener('click', function() {
-        const productName = this.previousElementSibling.textContent;
-        console.log(`Added ${productName} to cart`);
-
-        // Here you can push an event to GTM for tracking
-        dataLayer.push({
-            event: 'add_to_cart',
-            product: productName
-        });
+// Dodanie produktu do koszyka
+document.querySelectorAll('#add-to-cart').forEach(button => {
+    button.addEventListener('click', () => {
+        alert('Produkt dodany do koszyka!');
+        // Przykład dodawania produktu do koszyka
+        // Możesz tu dodać kod do aktualizacji koszyka w lokalnej pamięci lub sesji
     });
 });
 
-// Example of tracking "Checkout" event
-document.getElementById('checkout').addEventListener('click', function() {
-    console.log('Checkout clicked');
-    dataLayer.push({
-        event: 'begin_checkout'
-    });
+// Obsługa przycisku "Zakup"
+document.getElementById('checkout').addEventListener('click', () => {
+    // Logika zakupu
+    alert('Zamówienie złożone!');
+    window.location.href = 'thank-you.html'; // Przekierowanie na stronę podziękowania
 });
