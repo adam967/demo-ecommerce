@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NRPBX5JW');</script>
-<!-- End Google Tag Manager -->
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NRPBX5JW');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo E-commerce Store</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NRPBX5JW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
     <header>
         <h1>Demo E-commerce Store</h1>
     </header>
@@ -22,34 +26,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <section class="product-list">
             <!-- Product 1: Watch -->
             <div class="product">
-                <a href="watch.html">
+                <a id="watchClick" href="watch.html" class="product-link" data-item-id="1" data-item-name="Watch" data-item-category="Accessories" data-item-price="199.99">
                     <img src="images/watch.webp" alt="Watch">
                 </a>
                 <div class="product-details">
-                    <h2><a href="watch.html">Watch</a></h2>
-                    <p class="price"><a href="watch.html">$199.99</a></p>
+                    <h2><a id="watchClick" href="watch.html" class="product-link" data-item-id="1" data-item-name="Watch" data-item-category="Accessories" data-item-price="199.99">Watch</a></h2>
+                    <p class="price"><a id="watchClick" href="watch.html" class="product-link" data-item-id="1" data-item-name="Watch" data-item-category="Accessories" data-item-price="199.99">$199.99</a></p>
                 </div>
             </div>
 
             <!-- Product 2: Tablet -->
             <div class="product">
-                <a href="tablet.html">
+                <a href="tablet.html" class="product-link" data-item-id="2" data-item-name="Tablet" data-item-category="Electronics" data-item-price="299.99">
                     <img src="images/tablet.webp" alt="Tablet">
                 </a>
                 <div class="product-details">
-                    <h2><a href="tablet.html">Tablet</a></h2>
-                    <p class="price"><a href="tablet.html">$299.99</a></p>
+                    <h2><a href="tablet.html" class="product-link" data-item-id="2" data-item-name="Tablet" data-item-category="Electronics" data-item-price="299.99">Tablet</a></h2>
+                    <p class="price"><a href="tablet.html" class="product-link" data-item-id="2" data-item-name="Tablet" data-item-category="Electronics" data-item-price="299.99">$299.99</a></p>
                 </div>
             </div>
 
             <!-- Product 3: Laptop -->
             <div class="product">
-                <a href="laptop.html">
-                    <img src="images/tablet.webp" alt="Laptop">
+                <a href="laptop.html" class="product-link" data-item-id="3" data-item-name="Laptop" data-item-category="Electronics" data-item-price="2499.99">
+                    <img src="images/laptop.webp" alt="Laptop">
                 </a>
                 <div class="product-details">
-                    <h2><a href="laptop.html">Laptop</a></h2>
-                    <p class="price"><a href="laptop.html">$2499.99</a></p>
+                    <h2><a href="laptop.html" class="product-link" data-item-id="3" data-item-name="Laptop" data-item-category="Electronics" data-item-price="2499.99">Laptop</a></h2>
+                    <p class="price"><a href="laptop.html" class="product-link" data-item-id="3" data-item-name="Laptop" data-item-category="Electronics" data-item-price="2499.99">$2499.99</a></p>
                 </div>
             </div>
         </section>
@@ -83,5 +87,55 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <footer>
         <p>&copy; 2024 Demo E-commerce</p>
     </footer>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    setTimeout(function() {
+        dataLayer.push({
+            'event': 'view_item_list', // Zmień nazwę wydarzenia na odpowiednią
+            'item_list_name': 'home_product_list',    // Dodaj dowolne klucze i wartości
+            'items': [
+                {
+                    'item_id': '1',          // ID produktu
+                    'item_name': 'Watch', // Nazwa produktu             // Ilość
+                    'price': 199.99             // Cena jednostkowa
+                },
+                {
+                    'item_id': '2',
+                    'item_name': 'Tablet',
+                    'price': 299.99
+                },
+                {
+                    'item_id': '3',
+                    'item_name': 'Laptop',
+                    'price': 2499.99
+                }
+            ]
+        });
+    }, 500); // Opóźnienie w milisekundach
+</script>
+
+<script>
+    document.getElementById('watchClick').addEventListener('click', function() {
+        // Czyszczenie dataLayer przed dodaniem nowych danych
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.length = 0;  // Resetuje dataLayer, usuwając wszystkie poprzednie dane
+
+        // Dodanie nowych danych do dataLayer
+        dataLayer.push({
+            'event': 'select_item',       // Nazwa zdarzenia
+            'item_list_name': 'home_product_list',    // Lista produktów, na której nastąpił wybór
+            'items': [
+                {
+                    'item_id': '1',       // ID wybranego produktu
+                    'item_name': 'Watch', // Nazwa wybranego produktu
+                    'price': 199.99       // Cena wybranego produktu
+                }
+            ]
+        });
+    });
+</script>
+
+
+
 </body>
 </html>
