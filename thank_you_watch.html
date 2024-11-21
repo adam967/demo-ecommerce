@@ -35,5 +35,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <footer>
         <p>&copy; 2024 Demo E-commerce</p>
     </footer>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      setTimeout(function() {
+        dataLayer.push({ ecommerce: null });
+        dataLayer.push({
+          'event': 'purchase',
+          ecommerce: {
+            'transaction_id': 'T_121',
+            'currency': 'USD',
+            'value': '199.99',
+            'items': [
+              {
+                'item_id': '1',
+                'item_name': 'Watch',
+                'item_brand': "My Brand",
+                'item_category': 'accessories',
+                'item_list_name': 'home_product_list',
+                'price': 199.99
+              }
+            ],
+            'item_list_name': 'home_product_list'
+          }
+        });
+      }, 500);
+    </script>
 </body>
 </html>

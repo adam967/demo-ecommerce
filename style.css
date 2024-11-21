@@ -450,3 +450,33 @@ form button:hover {
 .back-to-home-btn:hover {
     background-color: #444;
 }
+
+
+/* Styl dla przycisku formularza */
+form button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background-color: #2d2d2d;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Styl dla przycisku po najechaniu (hover) */
+form button:hover {
+    background-color: #444;
+}
+
+/* Styl dla nieaktywnego przycisku */
+form button:disabled {
+    background-color: #b0b0b0;  /* Szary kolor */
+    color: #7a7a7a;  /* Jaśniejszy kolor tekstu */
+    cursor: not-allowed;  /* Zmiana kursora */
+}
+
+/* Styl dla przycisku po najechaniu, gdy jest nieaktywny */
+form button:disabled:hover {
+    background-color: #b0b0b0;  /* Szary kolor, brak zmiany po najechaniu */
+}
