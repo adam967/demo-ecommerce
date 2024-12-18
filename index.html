@@ -183,16 +183,5 @@
       });
     });
   </script>
-<script>
-  document.querySelectorAll('.product-link').forEach(link => {
-  link.addEventListener('click', function (event) {
-    event.preventDefault(); // Zatrzymaj domyślną nawigację
-    const href = this.getAttribute('href');
-    if (href) {
-      window.location.href = href; // Wykonaj nawigację z pełnym przeładowaniem
-    }
-  });
-});
-</script>
 </body>
 </html>
