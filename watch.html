@@ -56,7 +56,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <p>&copy; 2024 Demo E-commerce</p>
     </footer>
 
-    <script>
+    <!--<script>
       window.dataLayer = window.dataLayer || [];
       setTimeout(function() {
         dataLayer.push({ ecommerce: null });
@@ -79,7 +79,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }
         });
       }, 500);
-    </script>
+    </script>-->
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      window.dataLayer = window.dataLayer || [];
+      dataLayer.push({ ecommerce: null }); // Zerowanie poprzednich danych
+      dataLayer.push({
+        'event': 'view_item',
+        ecommerce: {
+          'currency': 'USD',
+          'value': '199.99',
+          'items': [
+            {
+              'item_id': '1',
+              'item_name': 'Watch',
+              'item_brand': "My Brand",
+              'item_category': 'accessories',
+              'item_list_name': 'home_product_list',
+              'price': 199.99
+            }
+          ],
+          'item_list_name': 'home_product_list'
+        }
+      });
+    });
+  </script>
 
 
     <script>
