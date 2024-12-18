@@ -184,7 +184,7 @@
     });
   </script>
   
-  <script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     const links = document.querySelectorAll('.product-link');
     
@@ -192,8 +192,7 @@
       link.addEventListener('click', function (event) {
         event.preventDefault(); // Zapobiega domyślnemu zachowaniu linku
         const url = this.getAttribute('href');
-        window.location.href = url; // Przejście do linku
-        window.location.reload(true); // Wymuszenie twardego przeładowania
+        window.location.href = url; // Przejście do linku z twardym przeładowaniem
       });
     });
   });
