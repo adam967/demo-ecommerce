@@ -157,7 +157,7 @@
     }, 500);
   </script>
 
-  <!--<script>
+  <script>
     document.querySelectorAll('.product-link').forEach(link => {
       link.addEventListener('click', function(event) {
         const data = event.currentTarget.dataset; // Pobierz dane z `data-*`
@@ -182,39 +182,6 @@
         });
       });
     });
-  </script>-->
-  <script>document.querySelectorAll('.product-link').forEach(link => {
-  link.addEventListener('click', function(event) {
-    event.preventDefault(); // Zatrzymanie domyślnego działania przeglądarki
-
-    const data = event.currentTarget.dataset; // Pobierz dane z atrybutów data-*
-    const href = this.getAttribute('href'); // Pobierz adres URL
-
-    // Wysyłanie zdarzenia do dataLayer
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({ ecommerce: null }); // Reset e-commerce
-    dataLayer.push({
-      'event': 'select_item',
-      ecommerce: {
-        'items': [
-          {
-            'item_id': data.itemId,
-            'item_name': data.itemName,
-            'item_brand': "My Brand",
-            'item_category': data.itemCategory,
-            'item_list_name': 'home_product_list',
-            'price': parseFloat(data.itemPrice)
-          }
-        ],
-        'item_list_name': 'home_product_list'
-      }
-    });
-
-    // Wymuszenie pełnego przeładowania strony po krótkim opóźnieniu
-    setTimeout(() => {
-      window.location.assign(href);
-    }, 200); // Daj GTM czas na przetworzenie zdarzenia
-  });
-});</script>
+  </script>
 </body>
 </html>
