@@ -57,11 +57,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </footer>
 
     <script>
-      window.dataLayer = window.dataLayer || [];
-      setTimeout(function() {
-        dataLayer.push({ ecommerce: null });
+      // Push event to dataLayer for product view
+      dataLayer.push({
+        'event': 'view_item',
+        ecommerce: {
+          'currency': 'USD',
+          'value': '2499.99',
+          'items': [
+            {
+              'item_id': '3',
+              'item_name': 'Laptop',
+              'item_brand': "My Brand",
+              'item_category': 'electronics',
+              'item_list_name': "home_product_list",
+              'price': 2499.99
+            }
+          ],
+          'item_list_name': 'home_product_list'
+        }
+      });
+    </script>
+
+    <script>
+      document.getElementById('laptopAddToCart').addEventListener('click', function() {
+        // Push event to dataLayer for adding to cart
         dataLayer.push({
-          'event': 'view_item',
+          'event': 'add_to_cart',
           ecommerce: {
             'currency': 'USD',
             'value': '2499.99',
@@ -78,36 +99,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'item_list_name': 'home_product_list'
           }
         });
-      }, 500);
-    </script>
-
-    <script>
-      document.getElementById('laptopAddToCart').addEventListener('click', function() {
-        // Przepychanie nowych danych do dataLayer
-        window.dataLayer = window.dataLayer || [];
-        setTimeout(function() {
-          dataLayer.push({ ecommerce: null });
-          dataLayer.push({
-            'event': 'add_to_cart',
-            ecommerce: {
-              'currency': 'USD',
-              'value': '2499.99',
-              'items': [
-                {
-                  'item_id': '3',
-                  'item_name': 'Laptop',
-                  'item_brand': "My Brand",
-                  'item_category': 'electronics',
-                  'item_list_name': "home_product_list",
-                  'price': 2499.99
-                }
-              ],
-              'item_list_name': 'home_product_list'
-            }
-          });
-          // Przekierowanie po wysłaniu danych do dataLayer
-          window.location.href = 'cart_laptop.html';
-        }, 500);
+        // Redirect to cart page after adding to cart
+        window.location.href = 'cart_laptop.html';
       });
     </script>
 </body>
