@@ -2,68 +2,64 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-  <script>
-    (function(w,d,s,l,i){
-      w[l]=w[l]||[];
-      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),
-          dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NRPBX5JW');
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thank You - Watch Purchase</title>
-  <link rel="stylesheet" href="style.css">
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NRPBX5JW');</script>
+<!-- End Google Tag Manager -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Watch Purchase</title>
+    <link rel="stylesheet" href="style.css">
   <script src="scripts.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Demo E-commerce Store</h1>
-  </header>
+    <header>
+        <h1>Demo E-commerce Store</h1>
+    </header>
 
-  <main>
-    <section class="thank-you">
-      <h2>Thank You for Your Purchase!</h2>
-      <p>We appreciate your order of the Watch. Your purchase is being processed.</p>
-      <p>You will receive an email with your order details shortly.</p>
-      <div class="order-details">
-        <h3>Order Summary</h3>
-        <p><strong>Product:</strong> Watch</p>
-        <p><strong>Price:</strong> $199.99</p>
-      </div>
-      <button class="back-to-home-btn" onclick="location.href='index.html';">Back to Home</button>
-    </section>
-  </main>
+    <main>
+        <section class="thank-you">
+            <h2>Thank You for Your Purchase!</h2>
+            <p>We appreciate your order of the Watch. Your purchase is being processed.</p>
+            <p>You will receive an email with your order details shortly.</p>
+            <div class="order-details">
+                <h3>Order Summary</h3>
+                <p><strong>Product:</strong> Watch</p>
+                <p><strong>Price:</strong> $199.99</p>
+            </div>
+            <button class="back-to-home-btn" onclick="location.href='index.html';">Back to Home</button>
+        </section>
+    </main>
 
-  <footer>
-    <p>&copy; 2024 Demo E-commerce</p>
-  </footer>
-
-  <script>
-    // Dodanie zdarzenia 'purchase' do dataLayer
-    dataLayer.push({
-      'event': 'purchase',
-      ecommerce: {
-        'transaction_id': 'T_121',
-        'currency': 'USD',
-        'value': 199.99,
-        'items': [
-          {
-            'item_id': '1',
-            'item_name': 'Watch',
-            'item_brand': "My Brand",
-            'item_category': 'accessories',
-            'price': 199.99
+    <footer>
+        <p>&copy; 2024 Demo E-commerce</p>
+    </footer>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      setTimeout(function() {
+        dataLayer.push({ ecommerce: null });
+        dataLayer.push({
+          'event': 'purchase',
+          ecommerce: {
+            'transaction_id': 'T_121',
+            'currency': 'USD',
+            'value': '199.99',
+            'items': [
+              {
+                'item_id': '1',
+                'item_name': 'Watch',
+                'item_brand': "My Brand",
+                'item_category': 'accessories',
+                'item_list_name': 'home_product_list',
+                'price': 199.99
+              }
+            ],
+            'item_list_name': 'home_product_list'
           }
-        ]
-      }
-    });
-  </script>
+        });
+      }, 500);
+    </script>
 </body>
 </html>
