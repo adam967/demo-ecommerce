@@ -2,114 +2,112 @@
 <html lang="en">
 <head>
   <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NRPBX5JW');</script>
-<!-- End Google Tag Manager -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tablet - Demo E-commerce Store</title>
-    <link rel="stylesheet" href="style.css">
+  <script>
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(), event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),
+          dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NRPBX5JW');
+  </script>
+  <!-- End Google Tag Manager -->
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tablet - Demo E-commerce Store</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="scripts.js"></script>
 </head>
-<script src="scripts.js"></script>
 <body>
-    <header>
-        <h1>Demo E-commerce Store</h1>
-    </header>
+  <header>
+    <h1>Demo E-commerce Store</h1>
+  </header>
 
-    <main>
-        <section class="product-details">
-            <!-- Product Image -->
-            <div class="product-image">
-                <img src="images/tablet.webp" alt="Tablet">
-            </div>
+  <main>
+    <section class="product-details">
+      <!-- Product Image -->
+      <div class="product-image">
+        <img src="images/tablet.webp" alt="Tablet">
+      </div>
 
-            <!-- Product Information -->
-            <div class="product-info">
-                <h2>Tablet</h2>
-                <p class="price">$299.99</p>
-                <button id="tabletAddToCart" class="add-to-cart">Add to Cart</button>
-            </div>
-        </section>
+      <!-- Product Information -->
+      <div class="product-info">
+        <h2>Tablet</h2>
+        <p class="price">$299.99</p>
+        <button id="tabletAddToCart" class="add-to-cart">Add to Cart</button>
+      </div>
+    </section>
 
-        <!-- Product Description -->
-        <section class="product-description-section">
-            <p class="product-description">
-                A high-performance tablet, perfect for work and entertainment. Equipped with large storage and a fast processor for smooth operation.
-                <span class="hidden-description">
-                    Featuring a high-resolution display for sharp images and vibrant colors. Compact and lightweight, ideal for everyday use.
-                    With a long-lasting battery that supports hours of use without needing a charge. An excellent choice for anyone seeking versatility.
-                </span>
-            </p>
-            <button class="expand-description">Expand Description</button>
-        </section>
+    <!-- Product Description -->
+    <section class="product-description-section">
+      <p class="product-description">
+        A high-performance tablet, perfect for work and entertainment. Equipped with large storage and a fast processor for smooth operation.
+        <span class="hidden-description">
+          Featuring a high-resolution display for sharp images and vibrant colors. Compact and lightweight, ideal for everyday use.
+          With a long-lasting battery that supports hours of use without needing a charge. An excellent choice for anyone seeking versatility.
+        </span>
+      </p>
+      <button class="expand-description">Expand Description</button>
+    </section>
 
-        <!-- Back to Home Button -->
-        <div class="back-to-home">
-            <a href="index.html">Back to Home</a>
-        </div>
-    </main>
+    <!-- Back to Home Button -->
+    <div class="back-to-home">
+      <a href="index.html">Back to Home</a>
+    </div>
+  </main>
 
-    <footer>
-        <p>&copy; 2024 Demo E-commerce</p>
-    </footer>
+  <footer>
+    <p>&copy; 2024 Demo E-commerce</p>
+  </footer>
 
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      setTimeout(function() {
-        dataLayer.push({ ecommerce: null });
-        dataLayer.push({
-          'event': 'view_item',
-          ecommerce: {
-            'currency': 'USD',
-            'value': '299.99',
-            'items': [
-              {
-                'item_id': '2',
-                'item_name': 'Tablet',
-                'item_brand': "My Brand",
-                'item_category': 'electronics',
-                'item_list_name': "home_product_list",
-                'price': 299.99
-              }
-            ],
-            'item_list_name': 'home_product_list'
+  <script>
+    // Dodanie zdarzenia 'view_item' do dataLayer
+    dataLayer.push({
+      'event': 'view_item',
+      ecommerce: {
+        'currency': 'USD',
+        'value': 299.99,
+        'items': [
+          {
+            'item_id': '2',
+            'item_name': 'Tablet',
+            'item_brand': "My Brand",
+            'item_category': 'electronics',
+            'price': 299.99
           }
-        });
-      }, 500);
-    </script>
+        ]
+      }
+    });
+  </script>
 
-    <script>
-      document.getElementById('tabletAddToCart').addEventListener('click', function() {
-        // Przepychanie nowych danych do dataLayer
-        window.dataLayer = window.dataLayer || [];
-        setTimeout(function() {
-          dataLayer.push({ ecommerce: null });
-          dataLayer.push({
-            'event': 'add_to_cart',
-            ecommerce: {
-              'currency': 'USD',
-              'value': '299.99',
-              'items': [
-                {
-                  'item_id': '2',
-                  'item_name': 'Tablet',
-                  'item_brand': "My Brand",
-                  'item_category': 'electronics',
-                  'item_list_name': "home_product_list",
-                  'price': 299.99
-                }
-              ],
-              'item_list_name': 'home_product_list'
+  <script>
+    document.getElementById('tabletAddToCart').addEventListener('click', function() {
+      // Dodanie zdarzenia 'add_to_cart' do dataLayer
+      dataLayer.push({
+        'event': 'add_to_cart',
+        ecommerce: {
+          'currency': 'USD',
+          'value': 299.99,
+          'items': [
+            {
+              'item_id': '2',
+              'item_name': 'Tablet',
+              'item_brand': "My Brand",
+              'item_category': 'electronics',
+              'price': 299.99
             }
-          });
-          // Przekierowanie po wysłaniu danych do dataLayer
-          window.location.href = 'cart_tablet.html';
-        }, 500);
+          ]
+        }
       });
-    </script>
+
+      // Przekierowanie po kliknięciu
+      window.location.href = 'cart_tablet.html';
+    });
+  </script>
 
 </body>
 </html>
