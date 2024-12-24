@@ -100,7 +100,6 @@
         }
       });
     });
-
     </script>
 
     <!-- Contact Section -->
@@ -117,51 +116,45 @@
   </footer>
 
   <script>
-    window.dataLayer = window.dataLayer || [];
-    setTimeout(function() {
-      dataLayer.push({ ecommerce: null });
-      dataLayer.push({
-        'event': 'view_item_list',
-        ecommerce: {
-          'items': [
-            {
-              'item_id': '1',
-              'item_name': 'Watch',
-              'item_brand': "My Brand",
-              'item_category': 'accessories',
-              'item_list_name': 'home_product_list',
-              'price': 199.99
-            },
-            {
-              'item_id': '2',
-              'item_name': 'Tablet',
-              'item_brand': "My Brand",
-              'item_category': 'electronics',
-              'item_list_name': "home_product_list",
-              'price': 299.99
-            },
-            {
-              'item_id': '3',
-              'item_name': 'Laptop',
-              'item_brand': "My Brand",
-              'item_category': 'electronics',
-              'item_list_name': "home_product_list",
-              'price': 2499.99
-            }
-          ],
-          'item_list_name': 'home_product_list'
-        }
-      });
-    }, 500);
-  </script>
+    // Push event to dataLayer for product list view
+    dataLayer.push({
+      'event': 'view_item_list',
+      ecommerce: {
+        'items': [
+          {
+            'item_id': '1',
+            'item_name': 'Watch',
+            'item_brand': "My Brand",
+            'item_category': 'accessories',
+            'item_list_name': 'home_product_list',
+            'price': 199.99
+          },
+          {
+            'item_id': '2',
+            'item_name': 'Tablet',
+            'item_brand': "My Brand",
+            'item_category': 'electronics',
+            'item_list_name': "home_product_list",
+            'price': 299.99
+          },
+          {
+            'item_id': '3',
+            'item_name': 'Laptop',
+            'item_brand': "My Brand",
+            'item_category': 'electronics',
+            'item_list_name': "home_product_list",
+            'price': 2499.99
+          }
+        ],
+        'item_list_name': 'home_product_list'
+      }
+    });
 
-  <script>
+    // Push event to dataLayer for item selection
     document.querySelectorAll('.product-link').forEach(link => {
       link.addEventListener('click', function(event) {
         const data = event.currentTarget.dataset; // Pobierz dane z `data-*`
 
-        window.dataLayer = window.dataLayer || [];
-        dataLayer.push({ ecommerce: null });
         dataLayer.push({
           'event': 'select_item',
           ecommerce: {
@@ -181,7 +174,5 @@
       });
     });
   </script>
-
-
 </body>
 </html>
