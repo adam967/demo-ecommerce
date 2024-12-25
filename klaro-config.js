@@ -1,38 +1,116 @@
-window.klaroConfig = {
-  elementID: "cookie-banner",
-  privacyPolicy: "/privacy-policy",  // Jeśli masz stronę z polityką prywatności
-  translations: {
-    en: {
-      consentModal: {
-        title: "We use cookies!",
-        description: "We use cookies to improve your experience. By using this site, you agree to our use of cookies.",
-        acceptAll: "Accept All",
-        settings: "Settings",
-        necessary: "Necessary cookies",
-        optional: "Optional cookies"
-      },
-      settings: {
-        title: "Cookie Settings",
-        save: "Save settings",
-        cancel: "Cancel"
-      }
-    }
-  },
-  services: [
-    {
-      name: "gtm",
-      purpose: "Essential: Google Tag Manager",
-      required: true,
-      optOut: false,
-      cookies: []
+var klaroConfig = {
+    testing: false,
+    elementID: 'klaro',
+    storageMethod: 'cookie',
+    storageName: 'klaro',
+    htmlTexts: false,
+    cookieDomain: '.example.com',
+    cookieExpiresAfterDays: 30,
+    default: false,
+    mustConsent: false,
+    acceptAll: true,
+    hideDeclineAll: false,
+    hideLearnMore: false,
+    translations: {
+        zz: {
+            privacyPolicyUrl: '/privacy',
+            consentNotice: {
+                description: 'We use cookies to improve your experience. Please give your consent to continue.',
+            },
+            consentModal: {
+                description: 'Here you can see and customize the information that we collect about you.',
+            },
+            purposes: {
+                analytics: {
+                    title: 'Analytics'
+                },
+                security: {
+                    title: 'Security'
+                },
+                livechat: {
+                    title: 'Live Chat'
+                },
+                advertising: {
+                    title: 'Advertising'
+                },
+                styling: {
+                    title: 'Styling'
+                },
+            },
+        },
+        en: {
+            privacyPolicyUrl: '/privacy',
+            consentModal: {
+                description: 'Here you can see and customize the information that we collect about you.',
+            },
+            purposes: {
+                analytics: {
+                    title: 'Analytics'
+                },
+                security: {
+                    title: 'Security'
+                },
+                livechat: {
+                    title: 'Live Chat'
+                },
+                advertising: {
+                    title: 'Advertising'
+                },
+                styling: {
+                    title: 'Styling'
+                },
+            },
+        },
     },
-    {
-      name: "google_analytics",
-      purpose: "Google Analytics",
-      required: false,
-      optOut: true,
-      cookies: ["_ga", "_gid"]
-    }
-  ]
+
+    services: [
+        {
+            name: 'gtm',
+            required: true,
+            default: true,
+            translations: {
+                zz: {
+                    title: 'Google Tag Manager'
+                },
+                en: {
+                    description: 'Used for managing tags and other analytics services.'
+                },
+            },
+            purposes: ['analytics'],
+            cookies: [
+                'gtm_auth',
+                'gtm_debug',
+                'gtm_preview',
+                'gtm_load',
+            ],
+            callback: function(consent, service) {
+                console.log('User consent for service ' + service.name + ': consent=' + consent);
+            },
+        },
+        {
+            name: 'ga4',
+            default: false,
+            translations: {
+                zz: {
+                    title: 'Google Analytics 4'
+                },
+                en: {
+                    description: 'Google Analytics is used for tracking and analyzing website traffic.'
+                },
+            },
+            purposes: ['analytics'],
+            cookies: [
+                '_ga',
+                '_gid',
+                '_gat',
+            ],
+            callback: function(consent, service) {
+                console.log('User consent for service ' + service.name + ': consent=' + consent);
+            },
+        },
+    ],
+
+    callback: function(consent, service) {
+        console.log('User consent for service ' + service.name + ': consent=' + consent);
+    },
 };
-klaro.run();
