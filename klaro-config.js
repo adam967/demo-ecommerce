@@ -1,40 +1,41 @@
 var klaroConfig = {
-  elementID: 'klaro', // ID kontenera dla banera
-  version: 1, // Wersja konfiguracji
-  cookieName: 'klaro-consent', // Nazwa cookie przechowującego zgodę
-  privacyPolicy: '/privacy-policy', // Link do polityki prywatności
-  position: 'bottom', // Pozycja banera: 'bottom' dla dolnej części strony
-  hideFromLocalStorage: false, // Domyślnie, Klaro przechowuje stan w localStorage, ale możesz to wyłączyć
-  default: false, // Domyślna konfiguracja: wszystkie zgody są odmówione
+  // Inne ustawienia Klaro, które już masz
+  debug: true,  // Włącza tryb debugowania (pomocne przy szukaniu błędów)
+
+  // Ustawienia przycisków
   buttons: {
     acceptAll: {
-      text: 'Akceptuj wszystkie', // Tekst przycisku "Akceptuj wszystkie"
+      text: "That's Ok",  // Tekst na przycisku "Zaakceptuj wszystkie"
       callback: function() {
-        klaro.acceptAll(); // Akceptacja wszystkich zgód
+        klaro.acceptAll();  // Funkcja akceptująca wszystkie zgody
       }
     },
     preferences: {
-      text: 'Wybierz ustawienia', // Tekst przycisku "Wybierz ustawienia"
+      text: "Wybierz ustawienia",  // Tekst na przycisku "Preferencje"
       callback: function() {
-        klaro.show(); // Pokazuje interfejs, gdzie użytkownik może wybrać poszczególne zgody
+        klaro.show();  // Pokazuje okno z ustawieniami preferencji
       }
     }
   },
-  apps: [
+
+  // Ustawienia dla narzędzi i zgód (przykładowe)
+  purposes: [
     {
-      name: 'google-analytics',
-      title: 'Google Analytics',
-      purposes: ['analytics'],
-      cookies: ['_ga', '_gid'], // Przykładowe pliki cookie używane przez Google Analytics
-      required: false, // Google Analytics nie jest obowiązkowe
+      purpose: 'analytics',
+      name: 'Google Analytics',
+      description: 'We use Google Analytics to improve our website.',
+      cookies: ['_ga', '_gid'],
+      enabled: false
     },
     {
-      name: 'facebook-pixel',
-      title: 'Facebook Pixel',
-      purposes: ['analytics'],
-      cookies: ['_fbp'], // Przykładowy plik cookie Facebook Pixel
-      required: false,
+      purpose: 'marketing',
+      name: 'Google Ads',
+      description: 'We use Google Ads to show relevant ads.',
+      cookies: ['_gcl_au', '_fbp'],
+      enabled: false
     }
-    // Dodaj inne aplikacje wg potrzeb
   ]
 };
+
+// Uruchomienie Klaro z powyższą konfiguracją
+klaro.run(klaroConfig);
