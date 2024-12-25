@@ -14,14 +14,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demo E-commerce Store</title>
-    <!-- Załaduj Klaro CSS -->
-  <link rel="stylesheet" href="klaro.css">
+  
+ 
+<link rel="stylesheet" href="klaro.css">
+<script defer type="application/javascript" src="klaro.js"></script> <!-- Klaro JS -->
+<script defer type="application/javascript" src="klaro-config.js"></script> <!-- Twoja konfiguracja -->
 
-  <!-- Załaduj Klaro JS -->
-  <script defer type="application/javascript" src="klaro.js"></script>
+<script>
+  window.addEventListener('load', function () {
+    klaro.run(klaroConfig); // Uruchom Klaro po załadowaniu strony
+  });
+</script>
 
-  <!-- Załaduj plik konfiguracyjny Klaro -->
-  <script defer type="application/javascript" src="klaro-config.js"></script>
+
+  
   <link rel="stylesheet" href="style.css">
   <script src="scripts.js"></script>
 </head>
