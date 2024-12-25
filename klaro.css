@@ -1,0 +1,28 @@
+#cookie-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  text-align: center;
+  z-index: 1000;
+}
+
+#cookie-banner button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+#cookie-banner button:hover {
+  background-color: #0056b3;
+}
+
+#cookie-banner .klaro-modal {
+  text-align: left;
+}
