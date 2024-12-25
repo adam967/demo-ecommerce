@@ -7,12 +7,13 @@
 
   <link rel="stylesheet" href="klaro.css">
   <script defer type="application/javascript" src="klaro-config.js"></script>
-  <script 
-      defer
-      data-config="klaroConfig"
-      type="application/javascript"
-      src="klaro.js">
-  </script>
+<script src="klaro.js"></script> <!-- Załaduj Klaro -->
+<script src="klaro-config.js"></script> <!-- Załaduj konfigurację Klaro -->
+
+<script>
+  klaro.run(klaroConfig); // Uruchom Klaro z ustawioną konfiguracją
+</script>
+
 
 
   <!-- Google Tag Manager -->
