@@ -15,11 +15,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Demo E-commerce Store</title>
 
-<script src="klaro.js"></script>
-<script src="klaro-config.js"></script>
-<script>
-    klaro.run();  // Inicjalizacja Klaro
-</script>
+    <script src="klaro.js"></script>
+    <script src="klaro-config.js"></script>
 
 
   
@@ -194,6 +191,15 @@
     });
   </script>
 
-
+    <script>
+        window.onload = function() {
+            // Sprawdzamy, czy Klaro jest załadowane przed wywołaniem funkcji
+            if (typeof klaro !== "undefined" && typeof klaro.run === "function") {
+                klaro.run();  // Uruchomienie Klaro
+            } else {
+                console.error("Klaro is not loaded correctly or run function is missing.");
+            }
+        };
+    </script>
 </body>
 </html>
