@@ -1,29 +1,38 @@
-#klaro .cn-banner {
-  background-color: #333;
+#klaro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9); /* Półprzezroczyste tło */
   color: white;
-  padding: 20px;
-  font-size: 16px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  z-index: 1000;
+  text-align: center;
 }
 
-#klaro .cn-banner button {
-  background-color: #007bff;
+#klaro .klaro-buttons {
+  margin-top: 20px;
+}
+
+#klaro button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 16px;
+  background-color: #4CAF50;
   color: white;
-  padding: 10px 20px;
   border: none;
-  cursor: pointer;
-  font-size: 14px;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-#klaro .cn-banner button:hover {
-  background-color: #0056b3;
+#klaro button:hover {
+  background-color: #45a049;
 }
 
-#klaro .cn-banner button:disabled {
-  background-color: #999;
-  cursor: not-allowed;
+#klaro .klaro-close {
+  display: none; /* Ukrywa przycisk zamknięcia */
 }
