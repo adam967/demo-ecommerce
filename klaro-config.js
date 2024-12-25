@@ -1,24 +1,28 @@
 var klaroConfig = {
-  // Inne ustawienia Klaro, które już masz
-  debug: true,  // Włącza tryb debugowania (pomocne przy szukaniu błędów)
+  // Inne ustawienia Klaro
 
-  // Ustawienia przycisków
+  // Konfiguracja banera
+  bannerPosition: 'fixed',  // Ustawienie banera na 'fixed', czyli w stałej pozycji
+  bannerSize: 'fullscreen',  // Ustawienie pełnoekranowego banera
+  allowDecline: false,  // Wyłączenie przycisku zamknięcia ('X') - nie można zamknąć bez akceptacji
+
+  // Przyciski
   buttons: {
     acceptAll: {
-      text: "That's Ok",  // Tekst na przycisku "Zaakceptuj wszystkie"
+      text: "That's Ok",  // Tekst na przycisku 'Zaakceptuj wszystkie'
       callback: function() {
-        klaro.acceptAll();  // Funkcja akceptująca wszystkie zgody
+        klaro.acceptAll();  // Akceptuje wszystkie zgody
       }
     },
     preferences: {
-      text: "Wybierz ustawienia",  // Tekst na przycisku "Preferencje"
+      text: "Wybierz ustawienia",  // Tekst na przycisku 'Preferencje'
       callback: function() {
         klaro.show();  // Pokazuje okno z ustawieniami preferencji
       }
     }
   },
 
-  // Ustawienia dla narzędzi i zgód (przykładowe)
+  // Przykładowe cele zgód
   purposes: [
     {
       purpose: 'analytics',
