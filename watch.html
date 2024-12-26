@@ -9,7 +9,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NRPBX5JW');</script>
 <!-- End Google Tag Manager -->
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Watch - Demo E-commerce Store</title>
@@ -60,7 +60,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <script>
       window.dataLayer = window.dataLayer || [];
-      setTimeout(function() {
+      window.addEventListener('DOMContentLoaded',function () {
         dataLayer.push({ ecommerce: null });
         dataLayer.push({
           'event': 'view_item',
@@ -80,14 +80,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'item_list_name': 'home_product_list'
           }
         });
-      }, 500);
+      });
     </script>
 
     <script>
       document.getElementById('watchAddToCart').addEventListener('click', function() {
         // Przepychanie nowych danych do dataLayer
         window.dataLayer = window.dataLayer || [];
-        setTimeout(function() {
           dataLayer.push({ ecommerce: null });
           dataLayer.push({
             'event': 'add_to_cart',
@@ -109,7 +108,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           });
           // Przekierowanie po wysłaniu danych do dataLayer
           window.location.href = 'cart_watch.html';
-        }, 500);
       });
     </script>
 

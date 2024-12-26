@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </footer>
     <script>
       window.dataLayer = window.dataLayer || [];
-      setTimeout(function() {
+      window.addEventListener('DOMContentLoaded',function () {
         dataLayer.push({ ecommerce: null });
         dataLayer.push({
           'event': 'purchase',
@@ -59,7 +59,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'item_list_name': 'home_product_list'
           }
         });
-      }, 500);
+      });
     </script>
 </body>
 </html>
