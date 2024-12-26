@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Obsługa linków
+    // Obsługa linków (zakomentowane)
+    /*
     const links = document.querySelectorAll('a'); // Selekcja wszystkich linków na stronie
   
     links.forEach(link => {
@@ -22,4 +23,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    */
 });
