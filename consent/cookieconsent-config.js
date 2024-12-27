@@ -37,23 +37,29 @@ CookieConsent.run({
 
     onFirstConsent: ({ cookie }) => {
         console.log('onFirstConsent fired', cookie);
-        // Odświeżenie strony przy pierwszej zgodzie
-        setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
-        location.reload();
+        // Odświeżenie strony przy pierwszej zgodzie, ale tylko jeśli cookie nie istnieje
+        if (!getCookie('cc_cookie')) {
+            setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
+            location.reload();
+        }
     },
 
     onConsent: ({ cookie }) => {
         console.log('onConsent fired!', cookie);
-        // Odświeżenie strony przy każdej zgodzie
-        setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
-        location.reload();
+        // Odświeżenie strony przy każdej zgodzie, ale tylko jeśli cookie nie istnieje
+        if (!getCookie('cc_cookie')) {
+            setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
+            location.reload();
+        }
     },
 
     onChange: ({ changedCategories, changedServices }) => {
         console.log('onChange fired!', changedCategories, changedServices);
-        // Odświeżenie strony przy każdej zmianie zgody
-        setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
-        location.reload();
+        // Odświeżenie strony przy każdej zmianie zgody, ale tylko jeśli cookie nie istnieje
+        if (!getCookie('cc_cookie')) {
+            setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
+            location.reload();
+        }
     },
 
     onModalReady: ({ modalName }) => {
