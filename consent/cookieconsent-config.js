@@ -38,19 +38,28 @@ CookieConsent.run({
     onFirstConsent: ({ cookie }) => {
         console.log('onFirstConsent fired', cookie);
         // Refresh page on first consent
-        location.reload();
+        if (!getCookie('cc_cookie')) {
+            setCookie('cc_cookie', 'accepted', 365); // Set a cookie to prevent further refreshes
+            location.reload();
+        }
     },
 
     onConsent: ({ cookie }) => {
         console.log('onConsent fired!', cookie);
-        // Refresh page when consent is given
-        location.reload();
+        // Refresh page when consent is given, but prevent loop with a cookie check
+        if (!getCookie('cc_cookie')) {
+            setCookie('cc_cookie', 'accepted', 365); // Set a cookie to prevent further refreshes
+            location.reload();
+        }
     },
 
     onChange: ({ changedCategories, changedServices }) => {
         console.log('onChange fired!', changedCategories, changedServices);
-        // Refresh page when consent preferences are changed
-        location.reload();
+        // Refresh page when consent preferences are changed, but prevent loop with a cookie check
+        if (!getCookie('cc_cookie')) {
+            setCookie('cc_cookie', 'accepted', 365); // Set a cookie to prevent further refreshes
+            location.reload();
+        }
     },
 
     onModalReady: ({ modalName }) => {
@@ -168,3 +177,18 @@ CookieConsent.run({
         }
     }
 });
+
+// Helper functions to handle cookies
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+function setCookie(name, value, days) {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value}; ${expires}; path=/`;
+}
