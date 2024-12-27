@@ -1,12 +1,17 @@
+// Ustawienie konfiguracji Klaro
 window.klaroConfig = {
-  elementID: 'klaro-consent',
-  privacyPolicy: '/privacy',
-  lang: 'en',
+  elementID: 'klaro-consent', // Element ID dla okna zgody
+  privacyPolicy: '/privacy',  // Link do polityki prywatności
+  lang: 'en',                 // Ustawienie języka
   translations: {
     en: {
       consentModal: {
         title: 'We value your privacy!',
-        description: 'Customize your consent preferences.',
+        description: 'Please accept or customize your consent preferences.',
+      },
+      actions: {
+        consent: 'That\'s OK',
+        customize: 'Customize',
       },
     },
   },
@@ -16,14 +21,19 @@ window.klaroConfig = {
       title: 'Google Analytics',
       purposes: ['analytics'],
       cookies: ['_ga', '_gid'],
-      default: false, // Brak domyślnej zgody
+      default: false,  // Zgoda domyślnie ustawiona na "nie"
     },
   ],
   onConsentGiven: function(consents) {
-    console.log('User consented:', consents);
+    console.log('Consent given:', consents);
+    // Możesz tu sprawdzić, jakie zgody zostały udzielone
+    if (consents.googleAnalytics) {
+      console.log('Google Analytics consent given');
+    }
   },
 };
 
+// Inicjalizacja Klaro po załadowaniu strony
 document.addEventListener('DOMContentLoaded', function () {
   klaro.setup(window.klaroConfig);
 });

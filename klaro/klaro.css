@@ -1,3 +1,4 @@
+/* Przykład stylów dla Klaro */
 #klaro {
   position: fixed !important;
   top: 50% !important;
@@ -10,9 +11,6 @@
   border-radius: 8px !important;
   max-width: 500px !important;
   width: 90% !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
 }
 
 #klaro-backdrop {
