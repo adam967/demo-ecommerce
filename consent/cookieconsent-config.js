@@ -1,6 +1,6 @@
+import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
 CookieConsent.run({
     disablePageInteraction: true,
-
     cookie: {
         name: 'cc_cookie',
     },
@@ -19,49 +19,28 @@ CookieConsent.run({
         }
     },
 
+    onFirstConsent: ({cookie}) => {
+        console.log('onFirstConsent fired',cookie);
+    },
+
     onConsent: ({cookie}) => {
-        console.log('onConsent fired!', cookie);
-        
-        // Sprawdzamy, jakie usługi są zaakceptowane
-        const adsGranted = cookie.services.ads && cookie.services.ads.length > 0 ? 'granted' : 'denied';
-        const analyticsGranted = cookie.services.analytics && cookie.services.analytics.length > 0 ? 'granted' : 'denied';
-
-        console.log('ads consent:', adsGranted);
-        console.log('analytics consent:', analyticsGranted);
-
-        // Pushujemy dane do GTM
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            'event': 'consentUpdate',
-            'adsConsent': adsGranted,
-            'analyticsConsent': analyticsGranted
-        });
+        console.log('onConsent fired!', cookie)
     },
 
     onChange: ({changedCategories, changedServices}) => {
         console.log('onChange fired!', changedCategories, changedServices);
+    },
 
-        if (changedCategories.indexOf('ads') !== -1) {
-            const adsGranted = changedServices.ads && changedServices.ads.length > 0 ? 'granted' : 'denied';
-            console.log('ads consent changed to:', adsGranted);
-            
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'consentUpdate',
-                'adsConsent': adsGranted
-            });
-        }
+    onModalReady: ({modalName}) => {
+        console.log('ready:', modalName);
+    },
 
-        if (changedCategories.indexOf('analytics') !== -1) {
-            const analyticsGranted = changedServices.analytics && changedServices.analytics.length > 0 ? 'granted' : 'denied';
-            console.log('analytics consent changed to:', analyticsGranted);
+    onModalShow: ({modalName}) => {
+        console.log('visible:', modalName);
+    },
 
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'consentUpdate',
-                'analyticsConsent': analyticsGranted
-            });
-        }
+    onModalHide: ({modalName}) => {
+        console.log('hidden:', modalName);
     },
 
     categories: {
@@ -72,8 +51,12 @@ CookieConsent.run({
         analytics: {
             autoClear: {
                 cookies: [
-                    { name: /^_ga/ },
-                    { name: '_gid' }
+                    {
+                        name: /^_ga/,
+                    },
+                    {
+                        name: '_gid',
+                    }
                 ]
             },
             services: {
