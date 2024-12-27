@@ -83,14 +83,8 @@ CookieConsent.run({
                     onAccept: () => {},
                     onReject: () => {}
                 },
-                youtube: {
-                    label: 'Youtube Embed',
-                    onAccept: () => {},
-                    onReject: () => {}
-                },
             }
         },
-        ads: {}
     },
 
     language: {
