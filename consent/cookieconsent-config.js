@@ -24,7 +24,7 @@ CookieConsent.run({
     // https://cookieconsent.orestbida.com/reference/configuration-reference.html#guioptions
     guiOptions: {
         consentModal: {
-            layout: 'cloud inline',
+            layout: 'box',
             position: 'middle center',
             equalWeightButtons: true,
             flipButtons: false
