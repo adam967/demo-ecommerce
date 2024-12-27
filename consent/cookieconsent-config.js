@@ -5,7 +5,6 @@
 import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
 CookieConsent.run({
     
-
     // root: 'body',
     // autoShow: true,
     disablePageInteraction: true,
@@ -37,15 +36,32 @@ CookieConsent.run({
     },
 
     onFirstConsent: ({cookie}) => {
-        console.log('onFirstConsent fired',cookie);
+        console.log('onFirstConsent fired', cookie);
     },
 
     onConsent: ({cookie}) => {
-        console.log('onConsent fired!', cookie)
+        console.log('onConsent fired!', cookie);
     },
 
     onChange: ({changedCategories, changedServices}) => {
-    console.log('onChange fired!', changedCategories, changedServices);
+        console.log('onChange fired!', changedCategories, changedServices);
+
+        // Przykład aktualizacji zmiennych w GTM po zmianie zgody
+        if (changedCategories && changedCategories.indexOf('ads') !== -1) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'consentUpdate', // Wydarzenie w GTM
+                'adsConsent': changedServices.ads ? 'granted' : 'denied'
+            });
+        }
+
+        if (changedCategories && changedCategories.indexOf('analytics') !== -1) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'consentUpdate', // Wydarzenie w GTM
+                'analyticsConsent': changedServices.analytics ? 'granted' : 'denied'
+            });
+        }
     },
 
     onModalReady: ({modalName}) => {
