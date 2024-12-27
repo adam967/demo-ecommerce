@@ -2,6 +2,7 @@
  * All config. options available here:
  * https://cookieconsent.orestbida.com/reference/configuration-reference.html
  */
+import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
 CookieConsent.run({
 
     // root: 'body',
