@@ -20,6 +20,7 @@ window.klaroConfig = {
   ],
 };
 
+// Inicjalizacja Klaro
 document.addEventListener('DOMContentLoaded', function () {
-    klaro(klaroConfig);
+    klaro(klaroConfig); // Upewnij się, że funkcja jest dostępna
 });
