@@ -3,8 +3,9 @@
  * https://cookieconsent.orestbida.com/reference/configuration-reference.html
  */
 import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
-
 CookieConsent.run({
+    
+
     // root: 'body',
     // autoShow: true,
     disablePageInteraction: true,
@@ -35,42 +36,27 @@ CookieConsent.run({
         }
     },
 
-    onFirstConsent: ({ cookie }) => {
-        console.log('onFirstConsent fired', cookie);
-        // Odświeżenie strony przy pierwszej zgodzie, ale tylko jeśli cookie nie istnieje
-        if (!getCookie('cc_cookie')) {
-            setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
-            location.reload();
-        }
+    onFirstConsent: ({cookie}) => {
+        console.log('onFirstConsent fired',cookie);
     },
 
-    onConsent: ({ cookie }) => {
-        console.log('onConsent fired!', cookie);
-        // Odświeżenie strony przy każdej zgodzie, ale tylko jeśli cookie nie istnieje
-        if (!getCookie('cc_cookie')) {
-            setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
-            location.reload();
-        }
+    onConsent: ({cookie}) => {
+        console.log('onConsent fired!', cookie)
     },
 
-    onChange: ({ changedCategories, changedServices }) => {
-        console.log('onChange fired!', changedCategories, changedServices);
-        // Odświeżenie strony przy każdej zmianie zgody, ale tylko jeśli cookie nie istnieje
-        if (!getCookie('cc_cookie')) {
-            setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
-            location.reload();
-        }
+    onChange: ({changedCategories, changedServices}) => {
+    console.log('onChange fired!', changedCategories, changedServices);
     },
 
-    onModalReady: ({ modalName }) => {
+    onModalReady: ({modalName}) => {
         console.log('ready:', modalName);
     },
 
-    onModalShow: ({ modalName }) => {
+    onModalShow: ({modalName}) => {
         console.log('visible:', modalName);
     },
 
-    onModalHide: ({ modalName }) => {
+    onModalHide: ({modalName}) => {
         console.log('hidden:', modalName);
     },
 
@@ -134,6 +120,7 @@ CookieConsent.run({
                         {
                             title: 'Strictly Necessary',
                             description: 'These cookies are essential for the proper functioning of the website and cannot be disabled.',
+
                             //this field will generate a toggle linked to the 'necessary' category
                             linkedCategory: 'necessary'
                         },
@@ -177,18 +164,3 @@ CookieConsent.run({
         }
     }
 });
-
-// Helper functions to handle cookies
-
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-
-function setCookie(name, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-    const expires = `expires=${date.toUTCString()}`;
-    document.cookie = `${name}=${value}; ${expires}; path=/`;
-}
