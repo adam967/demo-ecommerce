@@ -1,8 +1,7 @@
-// Ustawienie konfiguracji Klaro
 window.klaroConfig = {
-  elementID: 'klaro-consent',
-  privacyPolicy: '/privacy',
-  lang: 'en',
+  elementID: 'klaro-consent', // Identyfikator elementu
+  privacyPolicy: '/privacy',  // Ścieżka do polityki prywatności
+  lang: 'en', // Język pop-upu
   translations: {
     en: {
       consentModal: {
@@ -11,17 +10,18 @@ window.klaroConfig = {
       },
     },
   },
-  apps: [
+  services: [ // Definiowanie usług
     {
       name: 'googleAnalytics',
       title: 'Google Analytics',
-      purposes: ['analytics'],
-      cookies: ['_ga', '_gid'],
+      purposes: ['analytics'], // Cel: analiza
+      cookies: ['_ga', '_gid'], // Używane ciasteczka
+      default: false,  // Brak domyślnej zgody
     },
+    // Możesz dodać inne usługi w podobny sposób
   ],
 };
 
-// Inicjalizacja Klaro
 document.addEventListener('DOMContentLoaded', function () {
-    klaro.setup(window.klaroConfig); // Poprawne wywołanie dla obiektu
+  klaro.setup(window.klaroConfig); // Inicjalizacja Klaro
 });
