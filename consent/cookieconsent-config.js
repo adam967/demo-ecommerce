@@ -3,11 +3,9 @@
  * https://cookieconsent.orestbida.com/reference/configuration-reference.html
  */
 import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
-
-const hasConsent = localStorage.getItem('hasConsent'); // Sprawdzenie, czy zgoda została udzielona
-
 CookieConsent.run({
     
+
     // root: 'body',
     // autoShow: true,
     disablePageInteraction: true,
@@ -39,32 +37,15 @@ CookieConsent.run({
     },
 
     onFirstConsent: ({cookie}) => {
-        console.log('onFirstConsent fired', cookie);
-        localStorage.setItem('hasConsent', 'true'); // Zapisz stan zgody
+        console.log('onFirstConsent fired',cookie);
     },
 
     onConsent: ({cookie}) => {
-        console.log('onConsent fired!', cookie);
-        if (!hasConsent) {
-            localStorage.setItem('hasConsent', 'true'); // Zapisz stan zgody
-            location.reload();  // Odświeżenie strony po akceptacji
-        }
+        console.log('onConsent fired!', cookie)
     },
 
     onChange: ({changedCategories, changedServices}) => {
-        console.log('onChange fired!', changedCategories, changedServices);
-        if (!hasConsent) {
-            localStorage.setItem('hasConsent', 'true'); // Zapisz stan zgody
-            location.reload();  // Odświeżenie strony po zmianie preferencji
-        }
-    },
-
-    onDeny: ({cookie}) => {
-        console.log('onDeny fired!', cookie);
-        if (!hasConsent) {
-            localStorage.setItem('hasConsent', 'false'); // Zapisz stan odrzucenia
-            location.reload();  // Odświeżenie strony po odrzuceniu zgód
-        }
+    console.log('onChange fired!', changedCategories, changedServices);
     },
 
     onModalReady: ({modalName}) => {
