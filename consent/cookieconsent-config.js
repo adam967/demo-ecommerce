@@ -5,7 +5,6 @@
 import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
 CookieConsent.run({
     
-
     // root: 'body',
     // autoShow: true,
     disablePageInteraction: true,
@@ -37,15 +36,22 @@ CookieConsent.run({
     },
 
     onFirstConsent: ({cookie}) => {
-        console.log('onFirstConsent fired',cookie);
+        console.log('onFirstConsent fired', cookie);
     },
 
     onConsent: ({cookie}) => {
-        console.log('onConsent fired!', cookie)
+        console.log('onConsent fired!', cookie);
+        location.reload();  // Odświeżenie strony po akceptacji
     },
 
     onChange: ({changedCategories, changedServices}) => {
-    console.log('onChange fired!', changedCategories, changedServices);
+        console.log('onChange fired!', changedCategories, changedServices);
+        location.reload();  // Odświeżenie strony po zmianie preferencji
+    },
+
+    onDeny: ({cookie}) => {
+        console.log('onDeny fired!', cookie);
+        location.reload();  // Odświeżenie strony po odrzuceniu zgód
     },
 
     onModalReady: ({modalName}) => {
