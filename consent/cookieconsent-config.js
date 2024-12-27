@@ -7,7 +7,7 @@ CookieConsent.run({
 
     // root: 'body',
     // autoShow: true,
-    // disablePageInteraction: true,
+    disablePageInteraction: true,
     // hideFromBots: true,
     // mode: 'opt-in',
     // revision: 0,
