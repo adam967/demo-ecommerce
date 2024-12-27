@@ -1,10 +1,4 @@
-/**
- * All config. options available here:
- * https://cookieconsent.orestbida.com/reference/configuration-reference.html
- */
-import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
 CookieConsent.run({
-
     disablePageInteraction: true,
 
     cookie: {
@@ -25,52 +19,49 @@ CookieConsent.run({
         }
     },
 
-    onFirstConsent: ({cookie}) => {
-        console.log('onFirstConsent fired', cookie);
-    },
-
     onConsent: ({cookie}) => {
         console.log('onConsent fired!', cookie);
-        // After consent, push event to dataLayer
+        
+        // Sprawdzamy, jakie usługi są zaakceptowane
+        const adsGranted = cookie.services.ads && cookie.services.ads.length > 0 ? 'granted' : 'denied';
+        const analyticsGranted = cookie.services.analytics && cookie.services.analytics.length > 0 ? 'granted' : 'denied';
+
+        console.log('ads consent:', adsGranted);
+        console.log('analytics consent:', analyticsGranted);
+
+        // Pushujemy dane do GTM
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
             'event': 'consentUpdate',
-            'adsConsent': cookie.services.ads ? 'granted' : 'denied',
-            'analyticsConsent': cookie.services.analytics ? 'granted' : 'denied'
+            'adsConsent': adsGranted,
+            'analyticsConsent': analyticsGranted
         });
     },
 
     onChange: ({changedCategories, changedServices}) => {
         console.log('onChange fired!', changedCategories, changedServices);
 
-        // After consent change, push updated data to dataLayer
         if (changedCategories.indexOf('ads') !== -1) {
+            const adsGranted = changedServices.ads && changedServices.ads.length > 0 ? 'granted' : 'denied';
+            console.log('ads consent changed to:', adsGranted);
+            
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'consentUpdate',
-                'adsConsent': changedServices.ads ? 'granted' : 'denied'
+                'adsConsent': adsGranted
             });
         }
 
         if (changedCategories.indexOf('analytics') !== -1) {
+            const analyticsGranted = changedServices.analytics && changedServices.analytics.length > 0 ? 'granted' : 'denied';
+            console.log('analytics consent changed to:', analyticsGranted);
+
             window.dataLayer = window.dataLayer || [];
             window.dataLayer.push({
                 'event': 'consentUpdate',
-                'analyticsConsent': changedServices.analytics ? 'granted' : 'denied'
+                'analyticsConsent': analyticsGranted
             });
         }
-    },
-
-    onModalReady: ({modalName}) => {
-        console.log('ready:', modalName);
-    },
-
-    onModalShow: ({modalName}) => {
-        console.log('visible:', modalName);
-    },
-
-    onModalHide: ({modalName}) => {
-        console.log('hidden:', modalName);
     },
 
     categories: {
