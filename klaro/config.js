@@ -1,3 +1,4 @@
+// Ustawienie konfiguracji Klaro
 window.klaroConfig = {
   elementID: 'klaro-consent',
   privacyPolicy: '/privacy',
@@ -22,5 +23,5 @@ window.klaroConfig = {
 
 // Inicjalizacja Klaro
 document.addEventListener('DOMContentLoaded', function () {
-    klaro(klaroConfig); // Upewnij się, że funkcja jest dostępna
+    klaro.setup(window.klaroConfig); // Poprawne wywołanie dla obiektu
 });
