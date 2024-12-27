@@ -11,7 +11,7 @@ CookieConsent.run({
     disablePageInteraction: true,
     // hideFromBots: true,
     // mode: 'opt-in',
-    // revision: 0,
+    revision: 1,
 
     cookie: {
         name: 'cc_cookie',
