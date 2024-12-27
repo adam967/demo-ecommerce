@@ -5,11 +5,7 @@
 import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
 
 CookieConsent.run({
-    // root: 'body',
-    // autoShow: true,
     disablePageInteraction: true,
-    // hideFromBots: true,
-    // mode: 'opt-in',
     revision: 1,
 
     cookie: {
@@ -36,31 +32,22 @@ CookieConsent.run({
 
     onFirstConsent: ({cookie}) => {
         console.log('onFirstConsent fired', cookie);
+        updateCookies(cookie); // Funkcja, która aktualizuje cookie w czasie rzeczywistym
     },
 
     onConsent: ({cookie}) => {
         console.log('onConsent fired!', cookie);
-        
-        // Zaktualizuj cookie w localStorage
-        localStorage.setItem('cc_cookie', JSON.stringify(cookie));
-        
-        // Wyślij zdarzenie do GTM
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-            event: 'cookieConsentUpdate',  // Custom event w GTM
-            consent: cookie
-        });
+        updateCookies(cookie); // Funkcja, która aktualizuje cookie w czasie rzeczywistym
     },
 
     onChange: ({changedCategories, changedServices}) => {
         console.log('onChange fired!', changedCategories, changedServices);
 
-        // Zaktualizowanie zgód w cookies
-        var cookie = localStorage.getItem('cc_cookie');  // Zmienna, która przechowuje aktualny stan cookies
+        // Zaktualizuj zgody w cookies
+        var cookie = getCookie('cc_cookie');
         try {
             var parsedCookie = JSON.parse(cookie);
             if (changedCategories) {
-                // Aktualizacja zgód dla poszczególnych kategorii
                 if (changedCategories.ads) {
                     parsedCookie.categories.ads = changedCategories.ads === 'granted';
                 }
@@ -68,17 +55,9 @@ CookieConsent.run({
                     parsedCookie.categories.analytics = changedCategories.analytics === 'granted';
                 }
             }
-            // Zaktualizowanie cookie
-            localStorage.setItem('cc_cookie', JSON.stringify(parsedCookie));
-
-            // Zaktualizowanie zmiennej w GTM
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                event: 'cookieConsentUpdate',  // Custom event w GTM
-                consent: parsedCookie  // Przekazanie zaktualizowanego obiektu cookie
-            });
+            updateCookies(parsedCookie); // Funkcja, która zapisuje zmodyfikowane cookie
         } catch (e) {
-            console.error('Error updating cookie consent: ', e);
+            console.error('Error updating cookie consent:', e);
         }
     },
 
@@ -102,16 +81,11 @@ CookieConsent.run({
         analytics: {
             autoClear: {
                 cookies: [
-                    {
-                        name: /^_ga/,   // regex: match all cookies starting with '_ga'
-                    },
-                    {
-                        name: '_gid',   // string: exact cookie name
-                    }
+                    { name: /^_ga/ },   // regex: match all cookies starting with '_ga'
+                    { name: '_gid' }    // string: exact cookie name
                 ]
             },
 
-            // https://cookieconsent.orestbida.com/reference/configuration-reference.html#category-services
             services: {
                 ga: {
                     label: 'Google Analytics',
@@ -133,7 +107,6 @@ CookieConsent.run({
                     acceptAllBtn: 'Accept all',
                     acceptNecessaryBtn: 'Reject all',
                     showPreferencesBtn: 'Manage Individual preferences',
-                    // closeIconLabel: 'Reject all and close modal',
                     footer: `
                         <a href="#path-to-impressum.html" target="_blank">Impressum</a>
                         <a href="#path-to-privacy-policy.html" target="_blank">Privacy Policy</a>
@@ -154,8 +127,6 @@ CookieConsent.run({
                         {
                             title: 'Strictly Necessary',
                             description: 'These cookies are essential for the proper functioning of the website and cannot be disabled.',
-
-                            //this field will generate a toggle linked to the 'necessary' category
                             linkedCategory: 'necessary'
                         },
                         {
@@ -170,22 +141,14 @@ CookieConsent.run({
                                     desc: 'Description'
                                 },
                                 body: [
-                                    {
-                                        name: '_ga',
-                                        domain: location.hostname,
-                                        desc: 'Description 1',
-                                    },
-                                    {
-                                        name: '_gid',
-                                        domain: location.hostname,
-                                        desc: 'Description 2',
-                                    }
+                                    { name: '_ga', domain: location.hostname, desc: 'Description 1' },
+                                    { name: '_gid', domain: location.hostname, desc: 'Description 2' }
                                 ]
                             }
                         },
                         {
                             title: 'Targeting and Advertising',
-                            description: 'These cookies are used to make advertising messages more relevant to you and your interests. The intention is to display ads that are relevant and engaging for the individual user and thereby more valuable for publishers and third party advertisers.',
+                            description: 'These cookies are used to make advertising messages more relevant to you and your interests.',
                             linkedCategory: 'ads',
                         },
                         {
@@ -198,3 +161,40 @@ CookieConsent.run({
         }
     }
 });
+
+/**
+ * Funkcja aktualizująca cookie w czasie rzeczywistym
+ * @param {Object} cookie 
+ */
+function updateCookies(cookie) {
+    setCookie('cc_cookie', JSON.stringify(cookie), 365);
+    // Po zaktualizowaniu cookie, wyślij do GTM
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: 'cookieConsentUpdate',
+        consent: cookie
+    });
+}
+
+/**
+ * Funkcja do odczytu cookies
+ * @param {string} name 
+ * @returns {string|null}
+ */
+function getCookie(name) {
+    let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    return match ? match[2] : null;
+}
+
+/**
+ * Funkcja do ustawiania cookies
+ * @param {string} name 
+ * @param {string} value 
+ * @param {number} days 
+ */
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+    const expires = "expires=" + d.toUTCString();
+    document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
