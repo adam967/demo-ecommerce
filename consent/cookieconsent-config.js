@@ -4,6 +4,7 @@
  */
 import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
 CookieConsent.run({
+    
 
     // root: 'body',
     // autoShow: true,
@@ -44,7 +45,10 @@ CookieConsent.run({
     },
 
     onChange: ({changedCategories, changedServices}) => {
-        console.log('onChange fired!', changedCategories, changedServices);
+    console.log('onChange fired!', changedCategories, changedServices);
+
+    // Dodanie odświeżenia strony po zmianie zgód
+    location.reload();  // Odświeżenie strony
     },
 
     onModalReady: ({modalName}) => {
