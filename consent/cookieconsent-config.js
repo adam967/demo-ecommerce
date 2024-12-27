@@ -37,29 +37,23 @@ CookieConsent.run({
 
     onFirstConsent: ({ cookie }) => {
         console.log('onFirstConsent fired', cookie);
-        // Refresh page on first consent
-        if (!getCookie('cc_cookie')) {
-            setCookie('cc_cookie', 'accepted', 365); // Set a cookie to prevent further refreshes
-            location.reload();
-        }
+        // Odświeżenie strony przy pierwszej zgodzie
+        setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
+        location.reload();
     },
 
     onConsent: ({ cookie }) => {
         console.log('onConsent fired!', cookie);
-        // Refresh page when consent is given, but prevent loop with a cookie check
-        if (!getCookie('cc_cookie')) {
-            setCookie('cc_cookie', 'accepted', 365); // Set a cookie to prevent further refreshes
-            location.reload();
-        }
+        // Odświeżenie strony przy każdej zgodzie
+        setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
+        location.reload();
     },
 
     onChange: ({ changedCategories, changedServices }) => {
         console.log('onChange fired!', changedCategories, changedServices);
-        // Refresh page when consent preferences are changed, but prevent loop with a cookie check
-        if (!getCookie('cc_cookie')) {
-            setCookie('cc_cookie', 'accepted', 365); // Set a cookie to prevent further refreshes
-            location.reload();
-        }
+        // Odświeżenie strony przy każdej zmianie zgody
+        setCookie('cc_cookie', 'accepted', 365); // ustaw cookie, aby zapobiec dalszym odświeżeniom
+        location.reload();
     },
 
     onModalReady: ({ modalName }) => {
