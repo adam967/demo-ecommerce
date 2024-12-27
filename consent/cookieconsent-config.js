@@ -85,6 +85,7 @@ CookieConsent.run({
                 },
             }
         },
+        ads: {}
     },
 
     language: {
