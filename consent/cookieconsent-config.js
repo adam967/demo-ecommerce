@@ -3,9 +3,8 @@
  * https://cookieconsent.orestbida.com/reference/configuration-reference.html
  */
 import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
-CookieConsent.run({
-    
 
+CookieConsent.run({
     // root: 'body',
     // autoShow: true,
     disablePageInteraction: true,
@@ -21,7 +20,6 @@ CookieConsent.run({
         // expiresAfterDays: 365,
     },
 
-    // https://cookieconsent.orestbida.com/reference/configuration-reference.html#guioptions
     guiOptions: {
         consentModal: {
             layout: 'box',
@@ -37,15 +35,51 @@ CookieConsent.run({
     },
 
     onFirstConsent: ({cookie}) => {
-        console.log('onFirstConsent fired',cookie);
+        console.log('onFirstConsent fired', cookie);
     },
 
     onConsent: ({cookie}) => {
-        console.log('onConsent fired!', cookie)
+        console.log('onConsent fired!', cookie);
+        
+        // Zaktualizuj cookie w localStorage
+        localStorage.setItem('cc_cookie', JSON.stringify(cookie));
+        
+        // Wyślij zdarzenie do GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: 'cookieConsentUpdate',  // Custom event w GTM
+            consent: cookie
+        });
     },
 
     onChange: ({changedCategories, changedServices}) => {
-    console.log('onChange fired!', changedCategories, changedServices);
+        console.log('onChange fired!', changedCategories, changedServices);
+
+        // Zaktualizowanie zgód w cookies
+        var cookie = localStorage.getItem('cc_cookie');  // Zmienna, która przechowuje aktualny stan cookies
+        try {
+            var parsedCookie = JSON.parse(cookie);
+            if (changedCategories) {
+                // Aktualizacja zgód dla poszczególnych kategorii
+                if (changedCategories.ads) {
+                    parsedCookie.categories.ads = changedCategories.ads === 'granted';
+                }
+                if (changedCategories.analytics) {
+                    parsedCookie.categories.analytics = changedCategories.analytics === 'granted';
+                }
+            }
+            // Zaktualizowanie cookie
+            localStorage.setItem('cc_cookie', JSON.stringify(parsedCookie));
+
+            // Zaktualizowanie zmiennej w GTM
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'cookieConsentUpdate',  // Custom event w GTM
+                consent: parsedCookie  // Przekazanie zaktualizowanego obiektu cookie
+            });
+        } catch (e) {
+            console.error('Error updating cookie consent: ', e);
+        }
     },
 
     onModalReady: ({modalName}) => {
